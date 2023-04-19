@@ -7,6 +7,7 @@ import br.com.example.demo.repositories.UserRepository;
 import br.com.example.demo.service.exception.ObjectNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import static java.lang.String.format;
@@ -30,5 +31,10 @@ public class UserService {
                                 format("Object not found. Id: %s, type: %s", id, User.class.getSimpleName())
                         )
                 ));
+    }
+
+
+    public Flux<User> findAll(){
+        return  userRepository.findAll();
     }
 }
